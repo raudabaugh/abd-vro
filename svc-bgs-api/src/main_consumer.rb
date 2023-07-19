@@ -52,7 +52,6 @@ def make_request(bgs_client)
   puts "claim_notes_req=#{req}"
   begin
     response = bgs_client.handle_request(req)
-    response = yield(response)
   rescue => e
     puts e.backtrace
     response = {
@@ -70,7 +69,6 @@ def make_request(bgs_client)
   puts "veteran_note_req=#{req}"
   begin
     response = bgs_client.handle_request(req)
-    response = yield(response)
   rescue => e
     puts e.backtrace
     response = {
