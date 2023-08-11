@@ -2,6 +2,24 @@ from typing import Optional
 
 from pydantic import BaseModel, root_validator
 
+class Contention(BaseModel):
+    diagnostic_code: Optional[int]
+    classification_code: Optional[int]
+
+    class Config:
+        orm_mode = True
+
+
+class MultiContentionClasimForIncreaseSubmission(BaseModel):
+    """526-ez submission w/ 1 or more contentions and claim for increase on rating for existing issue"""
+
+    contentions: list[Contention]
+    claim_id: int
+    form526_submission_id: int
+
+    class Config:
+        orm_mode = True
+
 
 class Claim(BaseModel):
     claim_id: int
@@ -20,6 +38,9 @@ class Claim(BaseModel):
                 "diagnostic_code is required for claim_type claim_for_increase"
             )
         return values
+
+    class Config:
+        orm_mode = True
 
 
 class PredictedClassification(BaseModel):
