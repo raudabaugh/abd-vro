@@ -22,8 +22,7 @@ prodImageName() {
 
 # These names should match directory names.
 # Also add image to .github/workflows/delete-published-*images.yml
-IMAGES=( postgres \
-  api-gateway app db-init \
+IMAGES=( api-gateway app db-init \
   svc-bgs-api svc-lighthouse-api svc-bie-kafka \
   xample-workflows \
   cc-app \
