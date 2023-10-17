@@ -25,7 +25,10 @@
 		"ghcr.io/devcontainers-contrib/features/npm-package:1": {
 			"package": "@stoplight/spectral-cli"
 		},
-		"ghcr.io/devcontainers/features/python:1": {}
+		"ghcr.io/devcontainers/features/python:1": {
+			"installTools": true,
+			"version": "3.11"
+		}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
