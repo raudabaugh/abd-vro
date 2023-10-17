@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session
 from . import database_models
 from .database import engine, get_db
 from .pydantic_models import (
-    ClaimForIncrease,
+    Claim,
     MultiContentionClasimForIncreaseSubmission,
     PredictedClassification,
 )
@@ -21,7 +21,6 @@ from .util.lookup_table import (ConditionDropdownLookupTable,
 dc_lookup_table = DiagnosticCodeLookupTable()
 dropdown_lookup_table = ConditionDropdownLookupTable()
 
-LOOKUP_TABLE = get_lookup_table()
 database_models.Base.metadata.create_all(bind=engine)
 app = FastAPI(
     title="Contention Classification",
@@ -90,7 +89,7 @@ def get_classification(claim: Claim) -> Optional[PredictedClassification]:
     return classification
 
 
-def get_claim_stats(claim: list[ClaimForIncrease]) -> dict:
+def get_claim_stats(claim: list[Claim]) -> dict:
     claim_metrics = {
         "vets_api_claim_id": claim.claim_id,
         "vets_api_form526_submission_id": claim.form526_submission_id,
@@ -116,7 +115,7 @@ async def batch_classify(
             "form526_submission_id": claim.form526_submission_id,
             "diagnostic_code": diagnostic_code,
         }
-        claim_for_increase = ClaimForIncrease.parse_obj(claim_for_increase)
+        claim_for_increase = Claim.parse_obj(claim_for_increase)
         classification = get_classification(claim_for_increase)
         classifications.append(classification)
         db_classification = database_models.Contention(

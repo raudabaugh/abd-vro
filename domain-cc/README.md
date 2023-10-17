@@ -89,7 +89,10 @@ alembic upgrade head
 ```
 Or if you're running the database in docker
 ```
-./gradlew :dockerComposeDown ./gradlew dockerPruneImages ./gradlew dockerPruneVolumes ./gradlew docker
+./gradlew :dockerComposeDown
+./gradlew dockerPruneImage 
+./gradlew dockerPruneVolume 
+./gradlew docker
 ```
 
 
