@@ -1,10 +1,10 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/java-postgres
+// README at: https://github.com/devcontainers/templates/tree/main/src/java
 {
-	"name": "Java & PostgreSQL",
-	"dockerComposeFile": "docker-compose.yml",
-	"service": "app",
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"name": "Java",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/java:1-17-bullseye",
+
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {
 			"moby": true,
@@ -12,11 +12,6 @@
 			"installDockerBuildx": true,
 			"version": "latest",
 			"dockerDashComposeVersion": "v1"
-		},
-		"ghcr.io/devcontainers-contrib/features/ant-sdkman:2": {
-			"version": "latest",
-			"jdkVersion": "17",
-			"jdkDistro": "ms"
 		},
 		"ghcr.io/dhoeric/features/hadolint:1": {},
 		"ghcr.io/marcozac/devcontainer-features/shellcheck:1": {
@@ -29,14 +24,10 @@
 			"installTools": true,
 			"version": "3.11"
 		}
-	}
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {}
+	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// This can be used to network with other containers or with the host.
-	// "forwardPorts": [5432],
+	"forwardPorts": [15672],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "java -version",
